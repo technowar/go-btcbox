@@ -35,10 +35,10 @@ type BTCBox struct {
 }
 
 // GetBalance ..
-func (b *BTCBox) GetBalance() (balance Balance, err error) {
+func (b *BTCBox) GetBalance() (balance Balance, r []byte, err error) {
 	payload := map[string]string{}
 	//payload["limit"] = fmt.Sprintf("%d", limit)
-	r, err := b.client.do("POST", "balance/", payload, true)
+	r, err = b.client.do("POST", "balance/", payload, true)
 	log.Printf("r:%s", string(r))
 	if err != nil {
 		return
@@ -50,8 +50,8 @@ func (b *BTCBox) GetBalance() (balance Balance, err error) {
 }
 
 // GetTicker ..
-func (b *BTCBox) GetTicker() (ticker Ticker, err error) {
-	r, err := b.client.do("GET", "ticker/", nil, false)
+func (b *BTCBox) GetTicker() (ticker Ticker, r []byte, err error) {
+	r, err = b.client.do("GET", "ticker/", nil, false)
 	if err != nil {
 		return
 	}

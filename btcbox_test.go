@@ -14,9 +14,10 @@ func TestGetTicker(t *testing.T) {
 	secret := os.Getenv("BTCBOX_SECRET")
 	api := New(token, secret)
 
-	ticker, err := api.GetTicker()
+	ticker, body, err := api.GetTicker()
 	log.Printf("err:%v", err)
 	require.NoError(t, err, nil)
+	log.Printf("body:%s", string(body))
 
 	log.Printf("err:%v", err)
 	require.NoError(t, err, nil)
@@ -32,9 +33,10 @@ func TestGetBalance(t *testing.T) {
 	secret := os.Getenv("BTCBOX_SECRET")
 	api := New(token, secret)
 
-	balance, err := api.GetBalance()
+	balance, body, err := api.GetBalance()
 	log.Printf("err:%v", err)
 	require.NoError(t, err, nil)
+	log.Printf("body:%s", string(body))
 	log.Printf("balance:%v", balance)
 	log.Printf("balance.BTCBalance:%v", balance.BTCBalance)
 	log.Printf("balance.JPYBalance:%v", balance.JPYBalance)
