@@ -18,6 +18,8 @@ type Ticker struct {
 // "doge_balance":0,"doge_lock":0,"eth_balance":1.998236,"eth_lock":0,
 //"jpy_balance":1218.298,"jpy_lock":0}
 type Balance struct {
+	Result      bool            `json:"result"`
+	Code        string          `json:"code"`
 	UID         int64           `json:"uid"`
 	Nameauth    int64           `json:"nameauth"`
 	Moflag      int64           `json:"moflag"`

@@ -2,6 +2,7 @@ package btcbox
 
 import (
 	"encoding/json"
+	"errors"
 	"log"
 	"time"
 	//simplejson "github.com/bitly/go-simplejson"
@@ -43,10 +44,18 @@ func (b *BTCBox) GetBalance() (balance Balance, r []byte, err error) {
 	if err != nil {
 		return
 	}
+
 	if err = json.Unmarshal(r, &balance); err != nil {
 		return
 	}
-	return
+
+	if len(balance.Code) == 0 {
+		balance.Result = true
+		balance.Code = "200"
+		return
+	}
+
+	return balance, nil, errors.New("Authentication failed")
 }
 
 // GetTicker ..
